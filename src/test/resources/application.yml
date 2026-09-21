@@ -1,0 +1,5 @@
+spring:
+  mongodb:
+    uri: mongodb://localhost:27017/test_db
+appDescription: "Pragma Reactive Report"
+appVersion: "1.0.0"
