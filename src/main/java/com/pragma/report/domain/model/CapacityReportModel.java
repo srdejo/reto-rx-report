@@ -5,11 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReportModel {
-    private String id;
+public class CapacityReportModel {
+    private Long id;
     private String name;
+    private List<TechnologyReportModel> technologies;
 }

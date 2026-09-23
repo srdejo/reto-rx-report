@@ -10,3 +10,6 @@ spring:
 appDescription: "Pragma Reactive Report"
 appVersion: "1.0.0"
 
+jwt:
+  secret: ${JWT_SECRET:change-this-secret-change-this-secret-32bytes}
+
