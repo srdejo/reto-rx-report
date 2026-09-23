@@ -1,11 +1,11 @@
 package com.pragma.report.infrastructure.configuration;
 
-import com.pragma.report.domain.api.IReportServicePort;
-import com.pragma.report.domain.spi.IReportPersistencePort;
-import com.pragma.report.domain.usecase.ReportUseCase;
-import com.pragma.report.infrastructure.out.mongo.adapter.ReportAdapter;
-import com.pragma.report.infrastructure.out.mongo.mapper.IReportEntityMapper;
-import com.pragma.report.infrastructure.out.mongo.repository.IReportRepository;
+import com.pragma.report.domain.api.IBootcampReportServicePort;
+import com.pragma.report.domain.spi.IBootcampReportPersistencePort;
+import com.pragma.report.domain.usecase.BootcampReportUseCase;
+import com.pragma.report.infrastructure.out.mongo.adapter.BootcampReportAdapter;
+import com.pragma.report.infrastructure.out.mongo.mapper.IBootcampReportEntityMapper;
+import com.pragma.report.infrastructure.out.mongo.repository.IBootcampReportRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,16 +13,16 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @RequiredArgsConstructor
 public class BeanConfiguration {
-    private final IReportRepository reportRepository;
-    private final IReportEntityMapper reportEntityMapper;
+    private final IBootcampReportRepository bootcampReportRepository;
+    private final IBootcampReportEntityMapper bootcampReportEntityMapper;
 
     @Bean
-    public IReportPersistencePort reportPersistencePort() {
-        return new ReportAdapter(reportRepository, reportEntityMapper);
+    public IBootcampReportPersistencePort bootcampReportPersistencePort() {
+        return new BootcampReportAdapter(bootcampReportRepository, bootcampReportEntityMapper);
     }
 
     @Bean
-    public IReportServicePort reportServicePort() {
-        return new ReportUseCase(reportPersistencePort());
+    public IBootcampReportServicePort bootcampReportServicePort() {
+        return new BootcampReportUseCase(bootcampReportPersistencePort());
     }
 }
