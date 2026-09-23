@@ -19,5 +19,6 @@ public class BootcampReportResponseDto {
     private Integer capacityCount;
     private Integer technologyCount;
     private Long enrolledCount;
+    private List<EnrolledPersonReportResponseDto> enrolledPersons;
     private LocalDateTime updatedAt;
 }

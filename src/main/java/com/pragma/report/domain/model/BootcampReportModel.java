@@ -23,5 +23,6 @@ public class BootcampReportModel {
     private Integer capacityCount;
     private Integer technologyCount;
     private Long enrolledCount;
+    private List<EnrolledPersonReportModel> enrolledPersons;
     private LocalDateTime updatedAt;
 }
