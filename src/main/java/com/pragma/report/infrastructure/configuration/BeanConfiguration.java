@@ -9,16 +9,18 @@ import com.pragma.report.infrastructure.out.mongo.repository.IBootcampReportRepo
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 
 @Configuration
 @RequiredArgsConstructor
 public class BeanConfiguration {
     private final IBootcampReportRepository bootcampReportRepository;
     private final IBootcampReportEntityMapper bootcampReportEntityMapper;
+    private final ReactiveMongoTemplate reactiveMongoTemplate;
 
     @Bean
     public IBootcampReportPersistencePort bootcampReportPersistencePort() {
-        return new BootcampReportAdapter(bootcampReportRepository, bootcampReportEntityMapper);
+        return new BootcampReportAdapter(bootcampReportRepository, bootcampReportEntityMapper, reactiveMongoTemplate);
     }
 
     @Bean

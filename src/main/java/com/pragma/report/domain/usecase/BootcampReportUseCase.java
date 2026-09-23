@@ -3,6 +3,7 @@ package com.pragma.report.domain.usecase;
 import com.pragma.report.domain.api.IBootcampReportServicePort;
 import com.pragma.report.domain.model.BootcampReportModel;
 import com.pragma.report.domain.model.CapacityReportModel;
+import com.pragma.report.domain.model.EnrolledPersonReportModel;
 import com.pragma.report.domain.model.TechnologyReportModel;
 import com.pragma.report.domain.spi.IBootcampReportPersistencePort;
 import reactor.core.publisher.Flux;
@@ -24,10 +25,14 @@ public class BootcampReportUseCase implements IBootcampReportServicePort {
     @Override
     public Mono<BootcampReportModel> saveBootcampReport(BootcampReportModel bootcampReportModel) {
         List<CapacityReportModel> capacities = Objects.requireNonNullElse(bootcampReportModel.getCapacities(), List.of());
+        List<EnrolledPersonReportModel> enrolledPersons =
+                Objects.requireNonNullElse(bootcampReportModel.getEnrolledPersons(), List.of());
 
         bootcampReportModel.setCapacities(capacities);
         bootcampReportModel.setCapacityCount(capacities.size());
         bootcampReportModel.setTechnologyCount(countDistinctTechnologies(capacities));
+        bootcampReportModel.setEnrolledPersons(enrolledPersons);
+        bootcampReportModel.setEnrolledCount((long) enrolledPersons.size());
         bootcampReportModel.setUpdatedAt(LocalDateTime.now(ZoneId.of("America/Bogota")));
 
         return bootcampReportPersistencePort.saveBootcampReport(bootcampReportModel);

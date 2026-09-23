@@ -5,7 +5,7 @@ spring:
   config:
     import: optional:file:.env[.properties]
   mongodb:
-    uri: mongodb+srv://${DB_USER}:${DB_PASS}@${DB_HOST}/reports?appName=srdejo
+    uri: ${MONGODB_URI:mongodb+srv://${DB_USER}:${DB_PASS}@${DB_HOST}/reports?appName=srdejo}
 
 appDescription: "Pragma Reactive Report"
 appVersion: "1.0.0"
